@@ -37,7 +37,41 @@
       </form>
     </div>
   </div>
-
+  <script>
+    $(function () {
+      $('.login_form').submit(function (e) {
+        e.preventDefault();
+        const input_txt = $('.input_txt').val().trim()
+        const input_pass = $('.input_pass').val().trim()
+        if (input_txt === '' || input_pass === '') {
+          alert('傻子')
+          return
+        }
+        console.log('hh');
+        $.ajax({
+          type: "post",
+          url: "http://localhost:8080/api/v1/admin/user/login",
+          data: {
+            username: input_txt,
+            password: input_pass
+          },
+          dataType: 'json',
+          success: function (response) {
+            const code = response.code;
+            const msg = response.msg;
+            const token = response.token
+            if (response.code === 200) {
+              localStorage.setItem('token', response.token)
+              location.href = './index.html'
+              alert(response.msg)
+            } else {
+              alert(msg)
+            }
+          }
+        })
+      })
+    })
+  </script>
 </body>
 
 </html>
