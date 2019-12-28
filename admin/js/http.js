@@ -11,8 +11,13 @@
             }
 
         }
-
-
-
     })
+    const baseURL = 'http://localhost:8080/api/v1/';
+    const urls = {
+        userInfo: baseURL + 'admin/user/info',
+        userDetail: baseURL + 'admin/user/detail',
+        userDetail: baseURL + 'admin/user/edit'
+    }
+    window.urls = urls
+
 })(window);
