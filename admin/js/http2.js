@@ -4,13 +4,14 @@
     $.ajaxSetup({
         beforeSend(xhr) {
             if (!token) {
-                location.href = './login.html'
+                location.href = './login.html';
             }
             if (location.href.indexOf('login.html') === -1) {
-                xhr.setRequestHeader("Authorization", token)
+                xhr.setRequestHeader("Authorization", token);
             }
         }
-    })
+    });
+    // 设置请求的服务器根路径，用于后续完整 url 的拼接
     const baseURL = 'http://localhost:8080/api/v1';
     const urls = {
         baseURL: baseURL, //基地址
@@ -32,6 +33,7 @@
         comment_pass: baseURL + '/admin/comment/pass', //文章评论通过
         comment_reject: baseURL + '/admin/comment/reject', //文章评论不通过
         comment_delete: baseURL + '/admin/comment/delete', //文章评论删除
-    }
-    window.urls = urls
+    };
+    // 把 urls 对象暴露到全局 window 对象中
+    window.urls = urls;
 })(window);
